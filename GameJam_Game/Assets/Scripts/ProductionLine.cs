@@ -7,7 +7,6 @@ public class ProductionLine : MonoBehaviour
     public float ConveyerSpeed;
     public GameObject[] ProductionLines;
     public GameObject Material;
-    public int vectors;
     private void Awake()
     {
         StartCoroutine(Production());
@@ -28,10 +27,5 @@ public class ProductionLine : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-    }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(ProductionLines[vectors].transform.position, 0.3f);
     }
 }
