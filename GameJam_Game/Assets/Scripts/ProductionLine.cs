@@ -7,6 +7,7 @@ public class ProductionLine : MonoBehaviour
     public float ConveyerSpeed;
     public GameObject[] ProductionLines;
     public GameObject Material;
+    
     private void Awake()
     {
         StartCoroutine(Production());

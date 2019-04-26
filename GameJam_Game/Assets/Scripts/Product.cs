@@ -50,7 +50,6 @@ public class Product : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("sadasd");
         if (other.tag == "workstation")
         {
             GetComponent<MeshFilter>().mesh = other.GetComponent<WorkStation>().Mesh;
