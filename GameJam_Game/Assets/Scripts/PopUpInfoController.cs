@@ -13,7 +13,7 @@ public class PopUpInfoController : MonoBehaviour
     private bool showStars;
     private void Start()
     {
-        ShowWorkersInfo(0, 1, 2, "john");
+        //ShowWorkersInfo(0, 1, 2, "john");
     }
 
     public void ShowWorkersInfo(int strenght, int dexterity, int intelligence, string workerName)
