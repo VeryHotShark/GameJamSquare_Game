@@ -18,9 +18,22 @@ public class WorkPlace : MonoBehaviour
     bool workFast;
 
     [SerializeField] Worker m_currentWorker;
+    [SerializeField] WorkerAnimations m_workerAnimation;
+
+    public void Start()
+    {
+        m_workerAnimation.transform.position = this.transform.position - Vector3.up * 0.5f;
+        m_workerAnimation.transform.rotation = this.transform.rotation;
+    }
+
+    public void OnProductEnter()
+    {
+
+    }
 
     public void RemoveWorker()
     {
+        //m_workerAnimation = null;
         m_currentWorker = null;
         workSlow = false;
         workNormal = false;
@@ -73,6 +86,10 @@ public class WorkPlace : MonoBehaviour
         m_currentWorker.SetWorkSpeed(finalWorkSpeed);
     }
    
-
+    public void TriggerAnimation()
+    {
+        m_workerAnimation.anim.SetInteger("animIndex", m_workerAnimation.index);
+        m_workerAnimation.anim.SetTrigger("playAnim");
+    }
 
 }

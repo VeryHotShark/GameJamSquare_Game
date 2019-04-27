@@ -27,6 +27,7 @@ public class Product : MonoBehaviour
     bool castRay;
 
     public bool useSecondWaypoint;
+    public bool useThirdWaypoint;
     Transform[] waypoints;
     Transform[] waypoints2;
     Vector3 dir;
@@ -43,12 +44,15 @@ public class Product : MonoBehaviour
         initialSpeed = moveSpeed;
         if(useSecondWaypoint)
         {
-        waypoints = ProductionLine.Instance.ProductionLines2;
+            waypoints = ProductionLine.Instance.ProductionLines2;
+        }
+        else if ( useThirdWaypoint)
+        {
+            waypoints = ProductionLine.Instance.ProductionLines3;
         }
         else
         {
             waypoints = ProductionLine.Instance.ProductionLines;
-
         }
         lastWaypoint = waypoints[currentIndex].position;
         GetNextWaypoint();
@@ -162,6 +166,8 @@ public class Product : MonoBehaviour
             }
             if (1 < other.gameObject.layer == 1 < workZoneLayer)
             {
+                TriggerWorkAnimation(other);
+
                 transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
                 m_currentWorkPlace = other.GetComponentInParent<WorkPlace>();
                 if (m_currentWorkPlace.finalWorkSpeed < 1)
@@ -178,6 +184,12 @@ public class Product : MonoBehaviour
                 return;
             }
         }
+    }
+
+    void TriggerWorkAnimation(Collider other)
+    {
+        WorkPlace workPlace = other.GetComponentInParent<WorkPlace>();
+        workPlace.TriggerAnimation();
     }
 
     private void OnTriggerExit(Collider other)
