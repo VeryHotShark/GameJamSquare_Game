@@ -76,7 +76,7 @@ public class DragAndDrop : MonoBehaviour
         }
         //m_currentSelection.position -= Vector3.up * m_yGrabOffset;
         m_currentSelection = null;
-
+        Time.timeScale = 1;
     }
 
     bool CheckIfHitZone()
@@ -126,6 +126,7 @@ public class DragAndDrop : MonoBehaviour
             m_initWorkerPos = m_currentSelection.transform.position;
             m_landIndicator.position = new Vector3(m_currentSelection.position.x,m_groundOffset,m_currentSelection.position.z);
             m_currentSelection.position += Vector3.up * m_yGrabOffset;
+            Time.timeScale = 0;
         }
     }
 
