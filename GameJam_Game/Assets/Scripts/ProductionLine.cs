@@ -22,10 +22,13 @@ public class ProductionLine : MonoBehaviour
     {
         while(true)
         {
-            if(!Product.isWaiting)
+            if (transform.childCount < 30)
             {
-                Product child = Instantiate(product, ProductionLines[0].transform.position, Quaternion.identity,transform) as Product;
-                childsproducts.Add(child);
+                if (!Product.isWaiting)
+                {
+                    Product child = Instantiate(product, ProductionLines[0].transform.position, Quaternion.identity, transform) as Product;
+                    childsproducts.Add(child);
+                }
             }
             yield return new WaitForSeconds(spawnRate);
         }

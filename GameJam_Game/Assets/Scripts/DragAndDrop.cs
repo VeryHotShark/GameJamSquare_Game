@@ -31,7 +31,7 @@ public class DragAndDrop : MonoBehaviour
     Worker worker;
 
     bool isHolding;
-
+    public bool ActivePause = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +62,9 @@ public class DragAndDrop : MonoBehaviour
             }
         }
 
+         
+
+            
     }
 
     void CheckForMouseOver()
@@ -101,7 +104,7 @@ public class DragAndDrop : MonoBehaviour
         }
         //m_currentSelection.position -= Vector3.up * m_yGrabOffset;
         m_currentSelection = null;
-
+        ActivePause = false;
     }
 
     bool CheckIfHitZone()
@@ -137,6 +140,7 @@ public class DragAndDrop : MonoBehaviour
     void OnMouseClick()
     {
         isHolding = true;
+        
         CreateRay();
     }
 
@@ -154,9 +158,9 @@ public class DragAndDrop : MonoBehaviour
             m_currentSelection.position += Vector3.up * m_yGrabOffset;
 
             worker = m_camRayHitInfo.transform.GetComponent<Worker>();
-
             if(worker != null)
                 PopUpInfoController.Instance.ShowWorkersInfo(worker.strength,worker.dexterity,worker.intelligence,worker.name);
+            ActivePause = true;
         }
     }
 

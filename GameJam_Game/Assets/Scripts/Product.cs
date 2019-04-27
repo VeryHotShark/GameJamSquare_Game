@@ -9,6 +9,7 @@ public class Product : MonoBehaviour
 
     public static bool isWaiting;
     public LayerMask workZoneLayer;
+    public bool activepause;
 
     public float moveSpeed;
     public float threshold;
@@ -27,15 +28,24 @@ public class Product : MonoBehaviour
     {
         waypoints = ProductionLine.Instance.ProductionLines;
         GetNextWaypoint();
+        activepause = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DragAndDrop>().ActivePause;
     }
 
     void GetNextWaypoint()
     {
         dir = (waypoints[targetIndex].position - waypoints[currentIndex].position).normalized;
     }
-
+    void ResettingProduct()
+    {
+        if (transform.position == waypoints[waypoints.Length - 1].position)
+        {
+            transform.position = waypoints[0].position;
+            //Mesh Reset
+        }
+    }
     void Update()
     {
+        if(activepause == false)
         transform.Translate(dir * Time.deltaTime * moveSpeed);
 
         if (Vector3.Distance(transform.position, waypoints[targetIndex].position) < threshold)
