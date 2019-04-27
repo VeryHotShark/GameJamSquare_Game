@@ -11,12 +11,18 @@ public class ProductionLine : MonoBehaviour
 
     public Transform[] ProductionLines;
     public List<Product> childsproducts = new List<Product>();
-    public Product product;
+    //public Product product;
+
+    public float yOffset2;
+    public float spawnRate2 = 1f;
+
+    public Transform[] ProductionLines2;
+    public List<Product> childsproducts2 = new List<Product>();
 
     private void Awake()
     {
         Instance = this;
-        StartCoroutine(Production());
+        //StartCoroutine(Production());
     }
 
     public IEnumerator Production()
@@ -36,7 +42,20 @@ public class ProductionLine : MonoBehaviour
 
     public void SpawnProduct()
     {
+        if(!ConveyerStartState.productInside)
+        {
+
         Product child = ProductPooler.Instance.GetPooledObject(ProductionLines[0].transform.position - Vector3.up * yOffset, Quaternion.identity);
         childsproducts.Add(child);
+        }
+    }
+
+    public void SpawnProduct2()
+    {
+         if(!ConveyerStartState2.productInside)
+        {
+        Product child = ProductPooler.Instance.GetPooledObject(ProductionLines2[0].transform.position - Vector3.up * yOffset2, Quaternion.identity);
+        childsproducts2.Add(child);
+        }
     }
 }
