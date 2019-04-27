@@ -28,7 +28,7 @@ public class Product : MonoBehaviour
     {
         waypoints = ProductionLine.Instance.ProductionLines;
         GetNextWaypoint();
-        activepause = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DragAndDrop>().ActivePause;
+        
     }
 
     void GetNextWaypoint()
@@ -45,7 +45,8 @@ public class Product : MonoBehaviour
     }
     void Update()
     {
-        if(activepause == false)
+        activepause = DragAndDrop.ActivePause;
+        if (activepause == false)
         transform.Translate(dir * Time.deltaTime * moveSpeed);
 
         if (Vector3.Distance(transform.position, waypoints[targetIndex].position) < threshold)

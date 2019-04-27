@@ -31,7 +31,7 @@ public class DragAndDrop : MonoBehaviour
     Worker worker;
 
     bool isHolding;
-    public bool ActivePause = false;
+    public static bool ActivePause = false;
     // Start is called before the first frame update
     void Start()
     {
