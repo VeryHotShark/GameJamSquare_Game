@@ -11,6 +11,7 @@ public class Product : MonoBehaviour
     public float moveSpeed;
     public float threshold;
 
+    public int quality;
     int currentIndex = 0;
     int targetIndex = 1;
 

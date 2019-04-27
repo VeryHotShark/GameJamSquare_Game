@@ -7,6 +7,7 @@ public class Worker : MonoBehaviour
 
     [SerializeField] float m_workSpeed;
 
+    public string workerName;
     [Range(1,3)] public int intelligence = 1;
     [Range(1,3)] public int strength = 1;
     [Range(1,3)] public int dexterity = 1;
