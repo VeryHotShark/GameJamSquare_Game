@@ -90,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6406912751010916186
 MonoBehaviour:
@@ -104,8 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85aa165bf8d7c2340ba45794d1f2ee3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  workZoneCounter: 0
   workZoneLayer:
     serializedVersion: 2
     m_Bits: 1024
   moveSpeed: 1
   threshold: 0.1
+  quality: 0

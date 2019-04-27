@@ -65,7 +65,6 @@ public class Product : MonoBehaviour
     {
         if(1 < other.gameObject.layer ==  1 < workZoneLayer)
         {
-            workZoneCounter++;
             transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
             m_currentWorkPlace = other.GetComponentInParent<WorkPlace>();
             StartCoroutine(WaitRoutine());
@@ -75,6 +74,7 @@ public class Product : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        workZoneCounter++;
         m_currentWorkPlace = null;  
     }
 
@@ -107,7 +107,8 @@ public class Product : MonoBehaviour
 
         for (int i = myIndex; i < listCount; i++)
         {
-            products.Add(productsList[i]);
+            if(productsList[i].workZoneCounter == workZoneCounter)
+                products.Add(productsList[i]);
         }
 
         foreach (var product in products)
