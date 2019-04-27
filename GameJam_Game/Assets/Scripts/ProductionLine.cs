@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProductionLine : MonoBehaviour
 {
     public List<GameObject> ProductionLines = new List<GameObject>();
-    List<GameObject> childsproducts = new List<GameObject>();
+    public List<GameObject> childsproducts = new List<GameObject>();
     public GameObject product;
     
     private void Awake()
