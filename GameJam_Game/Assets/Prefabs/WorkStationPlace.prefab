@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4190135667290302414}
   - component: {fileID: 4190135667290302409}
-  m_Layer: 9
+  - component: {fileID: 533329029}
+  m_Layer: 10
   m_Name: ProductDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4190135667290302415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4190135667648361887}
   m_RootOrder: 0
@@ -42,8 +43,24 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 0.33, y: 0.38, z: 2}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &533329029
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190135667290302415}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4190135667648361859
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536fc7ac92ee88f4da229c193f169bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  workTime: 2
+  workTime: 3
   requiredIntelligence: 2
   requiredStrength: 2
   requiredDexterity: 2
