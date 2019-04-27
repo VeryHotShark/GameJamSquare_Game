@@ -27,6 +27,9 @@ public class DragAndDrop : MonoBehaviour
 
     float m_selectionZValue;
 
+    WorkPlace workPlace;
+    Worker worker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +66,7 @@ public class DragAndDrop : MonoBehaviour
 
         if(hitWorkZone)
         {
+            AssignWorkerToWorkPlace();
             SnapToWorkZone();
         }
         else
@@ -88,6 +92,21 @@ public class DragAndDrop : MonoBehaviour
     {
         m_currentSelection.position = new Vector3(m_workerHitInfo.transform.position.x,m_initWorkerPos.y,m_workerHitInfo.transform.position.z);
         m_landIndicator.position = new Vector3(m_workerHitInfo.transform.position.x,m_landIndicator.position.y,m_workerHitInfo.transform.position.z);
+    }
+
+    void AssignWorkerToWorkPlace()
+    {
+        if(workPlace != null)
+            workPlace.RemoveWorker();
+
+        worker = m_camRayHitInfo.transform.GetComponent<Worker>();
+        workPlace = m_workerHitInfo.transform.GetComponent<WorkPlace>();
+
+        workPlace.AddWorker(worker);
+        worker.AddWorkPlace(workPlace);
+
+        workPlace.CompareStats();
+        workPlace.SetWorkerSpeed();
     }
 
     void OnMouseClick()
