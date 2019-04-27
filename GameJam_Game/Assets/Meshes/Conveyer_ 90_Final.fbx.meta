@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 63ce3a448ba281d458091a1de92d591d
+guid: 96a23d9acbeb40045a0404b3ca5be683
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: a77f45936cf7e1a43919525b3be5b548, type: 2}
+      name: Metal
+    second: {fileID: 2100000, guid: 4db2858659056e24b8422742fa4fc367, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Ta\u015Bma"
+    second: {fileID: 2100000, guid: 5c75e1457b1aed8438166a6f46907dd0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
