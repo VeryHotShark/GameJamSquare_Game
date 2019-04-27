@@ -331,12 +331,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c4db3e6adb6794e80263323b549948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRate: 1.5
   ProductionLines:
-  - {fileID: 1895948166}
-  - {fileID: 752095583}
-  - {fileID: 887167822}
-  - {fileID: 286358166}
-  product: {fileID: 8363674297835380005, guid: 4f18415d0b4c6744b9324de1a858c1b5, type: 3}
+  - {fileID: 1895948170}
+  - {fileID: 752095587}
+  - {fileID: 887167826}
+  - {fileID: 286358170}
+  childsproducts: []
+  product: {fileID: 6406912751010916186, guid: 2651ffe9ab66aa64da8f7a6fe4be5d59, type: 3}
 --- !u!4 &334504000
 Transform:
   m_ObjectHideFlags: 0

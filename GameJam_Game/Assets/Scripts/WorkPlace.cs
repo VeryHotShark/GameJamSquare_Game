@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WorkPlace : MonoBehaviour
 {
+    public float workTime = 2f;
+
     [SerializeField]int requiredIntelligence = 2;
     [SerializeField]int requiredStrength = 2;
     [SerializeField]int requiredDexterity = 2;

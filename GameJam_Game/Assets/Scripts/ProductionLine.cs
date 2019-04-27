@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class ProductionLine : MonoBehaviour
 {
-    public List<GameObject> ProductionLines = new List<GameObject>();
-    public List<GameObject> childsproducts = new List<GameObject>();
-    public GameObject product;
+    public static ProductionLine Instance;
+
+    public float spawnRate = 1f;
+
+    public Transform[] ProductionLines ;
+    public List<Product> childsproducts = new List<Product>();
+    public Product product;
     
     private void Awake()
     {
+        Instance = this;
         StartCoroutine(Production());
     }
-    private void Update()
-    {
-        
-    }
+  
     public IEnumerator Production()
     {
         while(true)
         {
-            GameObject child = Instantiate(product, ProductionLines[0].transform.position, Quaternion.identity,transform) as GameObject;
-            childsproducts.Add(child);
-            yield return new WaitForSeconds(1f);
+            if(!Product.isWaiting)
+            {
+                Product child = Instantiate(product, ProductionLines[0].transform.position, Quaternion.identity,transform) as Product;
+                childsproducts.Add(child);
+            }
+            yield return new WaitForSeconds(spawnRate);
         }
-
     }
 }
