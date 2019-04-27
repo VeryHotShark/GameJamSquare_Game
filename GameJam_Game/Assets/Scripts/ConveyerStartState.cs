@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConveyerStartState : MonoBehaviour
 {
 
-    public static bool productInside;
+    public static bool productInside = false;
 
 
     private void OnTriggerStay(Collider other)

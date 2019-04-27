@@ -24,7 +24,10 @@ public class Product : MonoBehaviour
     public Vector3 rayCastTarget;
 
     bool castRay;
+
+    public bool useSecondWaypoint;
     Transform[] waypoints;
+    Transform[] waypoints2;
     Vector3 dir;
     Vector3 lastWaypoint;
     RaycastHit hit;
@@ -35,7 +38,15 @@ public class Product : MonoBehaviour
     {
         myMesh = GetComponent<MeshFilter>();
         initialSpeed = moveSpeed;
-        waypoints = ProductionLine.Instance.ProductionLines;
+        if(useSecondWaypoint)
+        {
+        waypoints = ProductionLine.Instance.ProductionLines2;
+        }
+        else
+        {
+            waypoints = ProductionLine.Instance.ProductionLines;
+
+        }
         lastWaypoint = waypoints[currentIndex].position;
         GetNextWaypoint();
         //activepause = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<DragAndDrop>().ActivePause;

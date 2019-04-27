@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6406912751010916186}
   - component: {fileID: -4801640134232254216}
   m_Layer: 11
-  m_Name: Sphere
+  m_Name: Sphere 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   rayCastTarget: {x: 7, y: -2, z: -5}
-  useSecondWaypoint: 0
+  useSecondWaypoint: 1
 --- !u!54 &-4801640134232254216
 Rigidbody:
   m_ObjectHideFlags: 0

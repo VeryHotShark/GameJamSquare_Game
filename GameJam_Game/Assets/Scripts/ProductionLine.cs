@@ -52,9 +52,9 @@ public class ProductionLine : MonoBehaviour
 
     public void SpawnProduct2()
     {
-         if(!ConveyerStartState2.productInside)
+        if(!ConveyerStartState2.productInside)
         {
-        Product child = ProductPooler.Instance.GetPooledObject(ProductionLines2[0].transform.position - Vector3.up * yOffset2, Quaternion.identity);
+        Product child = ProductPooler2.Instance.GetPooledObject(ProductionLines2[0].transform.position - Vector3.up * yOffset2, Quaternion.identity);
         childsproducts2.Add(child);
         }
     }
