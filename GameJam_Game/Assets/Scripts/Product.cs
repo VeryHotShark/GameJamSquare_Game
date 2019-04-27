@@ -55,6 +55,11 @@ public class Product : MonoBehaviour
             GetNextWaypoint();
             return;
         }
+
+        if (m_currentWorkPlace != null)
+        {
+
+        }
     }
 
     void SnapToPoint()
