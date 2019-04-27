@@ -5,8 +5,10 @@ using UnityEngine;
 public class WorkPlace : MonoBehaviour
 {
     public float workTime = 2f;
+    public float finalWorkSpeed;
 
     public Mesh changemesh;
+    public Material ChangeMaterial;
     [SerializeField]int requiredIntelligence = 2;
     [SerializeField]int requiredStrength = 2;
     [SerializeField]int requiredDexterity = 2;
@@ -28,6 +30,7 @@ public class WorkPlace : MonoBehaviour
     public void AddWorker(Worker worker)
     {
         m_currentWorker = worker;
+        SetWorkerSpeed();
     }
 
     public void CompareStats()
@@ -65,7 +68,7 @@ public class WorkPlace : MonoBehaviour
 
     public void SetWorkerSpeed()
     {
-        float finalWorkSpeed = workSlow ? 0.75f : workNormal ? 1f : 1.25f;
+         finalWorkSpeed = workSlow ? 0.75f : workNormal ? 1f : 1.25f;
 
         m_currentWorker.SetWorkSpeed(finalWorkSpeed);
     }

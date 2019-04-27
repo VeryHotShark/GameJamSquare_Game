@@ -7,6 +7,7 @@ public class Product : MonoBehaviour
 
     public int workZoneCounter;
     MeshFilter myMesh;
+    MeshRenderer myMaterial;
     public static bool isWaiting;
     public LayerMask workZoneLayer;
     public bool activepause;
@@ -14,7 +15,7 @@ public class Product : MonoBehaviour
     public float moveSpeed;
     public float threshold;
     public float rayY;
-    public int quality;
+    public float quality = 100;
     int currentIndex = 0;
     int targetIndex = 1;
     float initialSpeed;
@@ -37,6 +38,8 @@ public class Product : MonoBehaviour
     public void Start()
     {
         myMesh = GetComponent<MeshFilter>();
+        myMaterial = GetComponent<MeshRenderer>();
+
         initialSpeed = moveSpeed;
         if(useSecondWaypoint)
         {
@@ -85,14 +88,19 @@ public class Product : MonoBehaviour
         if (activepause == false || !stuck)
         transform.Translate(dir * Time.deltaTime * moveSpeed);
 
+        if (Vector3.Distance(transform.position, waypoints[waypoints.Length - 1].position) < threshold)
+        {
+            moveSpeed = 0;
+        }
         if (Vector3.Distance(transform.position, waypoints[targetIndex].position) < threshold)
         {
-            SnapToPoint();
-            IncreaseIndex();
-            GetNextWaypoint();
-            GetPreviousWaypoint();
-            return;
+                SnapToPoint();
+                IncreaseIndex();
+                GetNextWaypoint();
+                GetPreviousWaypoint();
+                return;
         }
+        
         if (stuck)
         {
             if (Physics.Raycast(transform.position, dir, out hit, 2.5f, productLayer))
@@ -135,7 +143,8 @@ public class Product : MonoBehaviour
 
     void IncreaseIndex()
     {
-        if (targetIndex + 1 < ProductionLine.Instance.ProductionLines.Length)
+        if (targetIndex == waypoints.Length - 1) { }
+        else if (targetIndex + 1< ProductionLine.Instance.ProductionLines.Length)
         {
             currentIndex++;
             targetIndex = currentIndex + 1;
@@ -146,13 +155,25 @@ public class Product : MonoBehaviour
     {
         if (other.gameObject.layer == 11 || other.gameObject.layer == 10)
         {
-            if(other.gameObject.layer == 10)
-            myMesh.mesh = other.GetComponentInParent<WorkPlace>().changemesh;
+            if (other.gameObject.layer == 10)
+            {
+                myMesh.mesh = other.GetComponentInParent<WorkPlace>().changemesh;
+                myMaterial.material = other.GetComponentInParent<WorkPlace>().ChangeMaterial;
+            }
             if (1 < other.gameObject.layer == 1 < workZoneLayer)
             {
-              
                 transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
                 m_currentWorkPlace = other.GetComponentInParent<WorkPlace>();
+                if (m_currentWorkPlace.finalWorkSpeed < 1)
+                {
+                    quality -= quality * .15f;
+                }
+                else if (m_currentWorkPlace.finalWorkSpeed > 1)
+                {
+                    quality += quality * .15f;
+                }
+                if (quality > 100)
+                    quality = 100;
                 StartCoroutine(WaitRoutine());
                 return;
             }
@@ -162,6 +183,7 @@ public class Product : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         workZoneCounter++;
+        
         m_currentWorkPlace = null;
         stuck = false;
     }
