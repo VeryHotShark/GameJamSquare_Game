@@ -6,7 +6,7 @@ public class Product : MonoBehaviour
 {
 
     public int workZoneCounter;
-
+    MeshFilter myMesh;
     public static bool isWaiting;
     public LayerMask workZoneLayer;
     public bool activepause;
@@ -33,6 +33,7 @@ public class Product : MonoBehaviour
 
     public void Start()
     {
+        myMesh = GetComponent<MeshFilter>();
         initialSpeed = moveSpeed;
         waypoints = ProductionLine.Instance.ProductionLines;
         lastWaypoint = waypoints[currentIndex].position;
@@ -132,11 +133,13 @@ public class Product : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.layer == 11 || other.gameObject.layer == 10)
         {
+            if(other.gameObject.layer == 10)
+            myMesh.mesh = other.GetComponentInParent<WorkPlace>().changemesh;
             if (1 < other.gameObject.layer == 1 < workZoneLayer)
             {
+              
                 transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
                 m_currentWorkPlace = other.GetComponentInParent<WorkPlace>();
                 StartCoroutine(WaitRoutine());

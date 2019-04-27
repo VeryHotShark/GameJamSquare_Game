@@ -6,6 +6,7 @@ public class WorkPlace : MonoBehaviour
 {
     public float workTime = 2f;
 
+    public Mesh changemesh;
     [SerializeField]int requiredIntelligence = 2;
     [SerializeField]int requiredStrength = 2;
     [SerializeField]int requiredDexterity = 2;
