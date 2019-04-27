@@ -69,7 +69,7 @@ public class WorkPlace : MonoBehaviour
 
         m_currentWorker.SetWorkSpeed(finalWorkSpeed);
     }
-
+   
 
 
 }
