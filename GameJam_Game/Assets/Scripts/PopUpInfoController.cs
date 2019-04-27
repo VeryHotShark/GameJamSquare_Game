@@ -6,6 +6,12 @@ using TMPro;
 
 public class PopUpInfoController : MonoBehaviour
 {
+    public static PopUpInfoController Instance;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
     public GameObject workerInfoBox;
     public GameObject strenghtStars, dexterityStars, intelligenceStars;
     public TextMeshProUGUI nameText;
@@ -13,7 +19,7 @@ public class PopUpInfoController : MonoBehaviour
     private bool showStars;
     private void Start()
     {
-        ShowWorkersInfo(0, 1, 2, "john");
+        //ShowWorkersInfo(0, 1, 2, "john");
     }
 
     public void ShowWorkersInfo(int strenght, int dexterity, int intelligence, string workerName)
