@@ -240,15 +240,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c4db3e6adb6794e80263323b549948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConveyerSpeed: 3
   ProductionLines:
   - {fileID: 1906219099}
   - {fileID: 456097154}
   - {fileID: 584981959}
   - {fileID: 580580573}
   - {fileID: 1847206094}
-  Material: {fileID: 8363674297835380005, guid: 4f18415d0b4c6744b9324de1a858c1b5,
-    type: 3}
+  product: {fileID: 8363674297835380005, guid: 4f18415d0b4c6744b9324de1a858c1b5, type: 3}
 --- !u!4 &97516106
 Transform:
   m_ObjectHideFlags: 0
@@ -1027,7 +1025,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.32e-43, y: 0, z: 1.57e-43, w: 0}
+  m_BoundingSphereOverride: {x: 5.5e-44, y: 0, z: 1.51e-43, w: 0.02734375}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

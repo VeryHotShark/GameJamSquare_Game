@@ -5,45 +5,43 @@ using UnityEngine;
 public class Product : MonoBehaviour
 {
     Vector3 currentTarget;
-    Vector3 direction;
     bool Travel = true;
-    float WaitInStation;
-    float MySpeed =5;
+    float WaitInStation = .1f;
+    float MySpeed =7;
     int parentlength;
     Vector3 parentposition;
-    float dist;
     Mesh mymesh;
     public int i = 1;
     void Awake()
     {
-        parentlength = transform.parent.GetComponent<ProductionLine>().ProductionLines.Length;
-        parentposition = transform.parent.GetComponent<ProductionLine>().ProductionLines[0].transform.position;
+        currentTarget = transform.parent.GetComponent<ProductionLine>().ProductionLines[1].transform.position;
+        parentlength = transform.parent.GetComponent<ProductionLine>().ProductionLines.Count;
         mymesh = GetComponent<Mesh>();
     }
-    void Update()
+    void FixedUpdate()
     {
-        currentTarget = transform.parent.GetComponent<ProductionLine>().ProductionLines[i].transform.position;
-        dist = Vector3.Distance(transform.position, currentTarget);
-        if (dist<.05f)
+        Debug.Log(currentTarget);
+        float dist = Vector3.Distance(transform.position, currentTarget);
+        if (dist<.1f)
         {
-           StartCoroutine( WaitForSomeTime(WaitInStation));
             i += 1;
+            if (i == parentlength)
+            {
+                i = 0;
+            }
+            StartCoroutine(WaitForSomeTime(WaitInStation));
+            currentTarget = transform.parent.GetComponent<ProductionLine>().ProductionLines[i].transform.position;
         }
-        if(i == parentlength)
-        {
-            transform.position = parentposition ;
-        }
-        if (i > parentlength - 1)
-            i = 0;
-
+        
+        
         Vector3 dir = (currentTarget - transform.position).normalized;
-        if(Travel)
-        transform.Translate(dir * Time.deltaTime* MySpeed);
+        if (Travel)
+            transform.Translate(dir * Time.deltaTime * MySpeed);
     }
 
     IEnumerator WaitForSomeTime(float amount)
     {
-        Travel = false;
+        Travel = false; 
         yield return new WaitForSeconds(amount);
         Travel = true;
     }

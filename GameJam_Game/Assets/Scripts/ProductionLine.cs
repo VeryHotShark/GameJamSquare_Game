@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ProductionLine : MonoBehaviour
 {
-    public float ConveyerSpeed;
-    public GameObject[] ProductionLines;
-    public GameObject Material;
+    public List<GameObject> ProductionLines = new List<GameObject>();
+    List<GameObject> childsproducts = new List<GameObject>();
+    public GameObject product;
     
     private void Awake()
     {
@@ -15,16 +15,13 @@ public class ProductionLine : MonoBehaviour
     private void Update()
     {
         
-        if (Vector3.Distance(ProductionLines[ProductionLines.Length-1].transform.position,transform.GetChild(0).transform.position) < .25f)
-        {
-            StopAllCoroutines();
-        }
     }
     public IEnumerator Production()
     {
         while(true)
         {
-            Instantiate(Material, ProductionLines[0].transform.position, Quaternion.identity,transform);
+            GameObject child = Instantiate(product, ProductionLines[0].transform.position, Quaternion.identity,transform) as GameObject;
+            childsproducts.Add(child);
             yield return new WaitForSeconds(1f);
         }
 
