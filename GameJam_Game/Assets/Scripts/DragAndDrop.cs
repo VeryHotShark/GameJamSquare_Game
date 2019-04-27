@@ -30,6 +30,8 @@ public class DragAndDrop : MonoBehaviour
     WorkPlace workPlace;
     Worker worker;
 
+    bool isHolding;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,14 +70,14 @@ public class DragAndDrop : MonoBehaviour
 
         bool hitSomething = Physics.Raycast(m_camRay, out m_camRayHitInfo, 100f, draggableLayer);
 
-        if(hitSomething)
+        if(hitSomething && !isHolding)
         {
             worker = m_camRayHitInfo.transform.GetComponent<Worker>();
 
             if(worker!= null)
                 PopUpInfoController.Instance.ShowWorkersInfo(worker.strength,worker.dexterity,worker.intelligence,worker.name);
         }
-        else
+        else if(!hitSomething && !isHolding)
         {
             PopUpInfoController.Instance.CloseWorkersInfo();
             return;
@@ -84,6 +86,7 @@ public class DragAndDrop : MonoBehaviour
     
     void OnMouseRelease()
     {
+        isHolding = false;
         bool hitWorkZone = CheckIfHitZone();
 
         if(hitWorkZone)
@@ -133,6 +136,7 @@ public class DragAndDrop : MonoBehaviour
 
     void OnMouseClick()
     {
+        isHolding = true;
         CreateRay();
     }
 
@@ -148,6 +152,11 @@ public class DragAndDrop : MonoBehaviour
             m_initWorkerPos = m_currentSelection.transform.position;
             m_landIndicator.position = new Vector3(m_currentSelection.position.x,m_groundOffset,m_currentSelection.position.z);
             m_currentSelection.position += Vector3.up * m_yGrabOffset;
+
+            worker = m_camRayHitInfo.transform.GetComponent<Worker>();
+
+            if(worker != null)
+                PopUpInfoController.Instance.ShowWorkersInfo(worker.strength,worker.dexterity,worker.intelligence,worker.name);
         }
     }
 

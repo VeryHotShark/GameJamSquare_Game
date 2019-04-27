@@ -5,6 +5,8 @@ using UnityEngine;
 public class Product : MonoBehaviour
 {
 
+    public int workZoneCounter;
+
     public static bool isWaiting;
     public LayerMask workZoneLayer;
 
@@ -63,6 +65,7 @@ public class Product : MonoBehaviour
     {
         if(1 < other.gameObject.layer ==  1 < workZoneLayer)
         {
+            workZoneCounter++;
             transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
             m_currentWorkPlace = other.GetComponentInParent<WorkPlace>();
             StartCoroutine(WaitRoutine());
