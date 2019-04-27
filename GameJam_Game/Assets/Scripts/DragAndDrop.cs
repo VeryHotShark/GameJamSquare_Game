@@ -43,6 +43,8 @@ public class DragAndDrop : MonoBehaviour
 
     void Update()
     {
+        CheckForMouseOver();
+
         if (Input.GetMouseButtonDown(0))
         {
             OnMouseClick();
@@ -58,6 +60,26 @@ public class DragAndDrop : MonoBehaviour
             }
         }
 
+    }
+
+    void CheckForMouseOver()
+    {
+        m_camRay = m_cam.ScreenPointToRay(Input.mousePosition);
+
+        bool hitSomething = Physics.Raycast(m_camRay, out m_camRayHitInfo, 100f, draggableLayer);
+
+        if(hitSomething)
+        {
+            worker = m_camRayHitInfo.transform.GetComponent<Worker>();
+
+            if(worker!= null)
+                PopUpInfoController.Instance.ShowWorkersInfo(worker.strength,worker.dexterity,worker.intelligence,worker.name);
+        }
+        else
+        {
+            PopUpInfoController.Instance.CloseWorkersInfo();
+            return;
+        }
     }
     
     void OnMouseRelease()
