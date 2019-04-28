@@ -30,6 +30,7 @@ public class Product : MonoBehaviour
     public bool useThirdWaypoint;
     Transform[] waypoints;
     Transform[] waypoints2;
+    Transform[] waypoints3;
     Vector3 dir;
     Vector3 lastWaypoint;
     RaycastHit hit;
@@ -84,60 +85,61 @@ public class Product : MonoBehaviour
     }
     void Update()
     {
-        if (moveSpeed == 0.0f && !isWaiting)
-        {
-            stuck = true;
-        }
-        Debug.DrawLine(transform.position, lastWaypoint);
-        if (activepause == false || !stuck)
-        transform.Translate(dir * Time.deltaTime * moveSpeed);
+            if (moveSpeed == 0.0f && !isWaiting)
+            {
+                stuck = true;
+            }
+            Debug.DrawLine(transform.position, lastWaypoint);
+            if (activepause == false || !stuck)
 
-        if (Vector3.Distance(transform.position, waypoints[waypoints.Length - 1].position) < threshold)
-        {
-            moveSpeed = 0;
-        }
-        if (Vector3.Distance(transform.position, waypoints[targetIndex].position) < threshold)
-        {
+                transform.Translate(dir * Time.deltaTime * moveSpeed);
+
+            if (Vector3.Distance(transform.position, waypoints[waypoints.Length - 1].position) < threshold)
+            {
+                moveSpeed = 0;
+            }
+            if (Vector3.Distance(transform.position, waypoints[targetIndex].position) < threshold)
+            {
                 SnapToPoint();
                 IncreaseIndex();
                 GetNextWaypoint();
                 GetPreviousWaypoint();
                 return;
-        }
-        
-        if (stuck)
-        {
-            if (Physics.Raycast(transform.position, dir, out hit, 2.5f, productLayer))
-            {
-                Product p = hit.transform.GetComponent<Product>();
-                if (hit.transform.gameObject.layer == 11)
-                {
-                    moveSpeed = 0f;
-                    if (!p.stuck && stuck)
-                    {
-                        moveSpeed = initialSpeed;
-                        stuck = false;
-                    }
-                }
             }
-        }
-        else
-        {
-            if (Physics.Raycast(transform.position, dir, out hit, 2.0f, productLayer))
-            {
-                Product p = hit.transform.GetComponent<Product>();
-                if (hit.transform.gameObject.layer == 11)
-                {
-                    moveSpeed = 0f;
-                    if (!p.stuck && stuck)
-                    {
-                        moveSpeed = initialSpeed;
-                        stuck = false;
-                    }
-                }
-            }
-        }
 
+            if (stuck)
+            {
+                if (Physics.Raycast(transform.position, dir, out hit, 2.5f, productLayer))
+                {
+                    Product p = hit.transform.GetComponent<Product>();
+                    if (hit.transform.gameObject.layer == 11)
+                    {
+                        moveSpeed = 0f;
+                        if (!p.stuck && stuck)
+                        {
+                            moveSpeed = initialSpeed;
+                            stuck = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (Physics.Raycast(transform.position, dir, out hit, 2.0f, productLayer))
+                {
+                    Product p = hit.transform.GetComponent<Product>();
+                    if (hit.transform.gameObject.layer == 11)
+                    {
+                        moveSpeed = 0f;
+                        if (!p.stuck && stuck)
+                        {
+                            moveSpeed = initialSpeed;
+                            stuck = false;
+                        }
+                    }
+                }
+            }
+        
     }
 
     void SnapToPoint()

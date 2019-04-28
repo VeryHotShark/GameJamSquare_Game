@@ -11,12 +11,14 @@ public class Connector : MonoBehaviour
         if(other.GetComponent<Product>().useSecondWaypoint == true)
         {
             first = other.gameObject;
+            other.GetComponent<Product>().moveSpeed = 0;
             print(first);
         }
         if(other.GetComponent<Product>().useSecondWaypoint == false)
         {
             
             second = other.gameObject;
+            other.GetComponent<Product>().moveSpeed = 0;
             print(second);
         }
     }

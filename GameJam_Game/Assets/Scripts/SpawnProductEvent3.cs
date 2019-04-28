@@ -6,7 +6,7 @@ public class SpawnProductEvent3 : MonoBehaviour
 {
     public void SpawnSand3()
     {
-        if (Connector.first.GetComponent<Product>().useSecondWaypoint != false && Connector.second.GetComponent<Product>().useSecondWaypoint != true)
+        if (Connector.first.GetComponent<Product>().useSecondWaypoint == true  && Connector.second.GetComponent<Product>().useSecondWaypoint == false)
         {
             Debug.Log("asd");
             Connector.first.SetActive(false);
