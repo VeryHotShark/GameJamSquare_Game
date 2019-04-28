@@ -6,7 +6,6 @@ public class SpawnProductEvent : MonoBehaviour
 {
     public void SpawnSand()
     {
-        Debug.Log("HALO");
 
         ProductionLine.Instance.SpawnProduct();
 

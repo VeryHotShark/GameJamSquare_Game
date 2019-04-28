@@ -32,7 +32,6 @@ public class ProductPooler3 : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     public Product GetPooledObject(Vector3 pos,Quaternion rot)
     {
         if(productQueue.Count > 0)

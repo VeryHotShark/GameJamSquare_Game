@@ -7,7 +7,6 @@ public class ConveyerStartState2 : MonoBehaviour
 
     public static bool productInside;
 
-
     private void OnTriggerStay(Collider other)
     {
         if(1 < other.gameObject.layer == 1 < LayerMask.NameToLayer("Product"))
@@ -18,8 +17,10 @@ public class ConveyerStartState2 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(1 < other.gameObject.layer == 1 < LayerMask.NameToLayer("Product"))
+        if (1 < other.gameObject.layer == 1 < LayerMask.NameToLayer("Product"))
+        {
             productInside = false;
+        }
     }
 
 }
